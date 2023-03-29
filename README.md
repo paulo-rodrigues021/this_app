@@ -6,6 +6,7 @@
     - usar Pydantic Base Models
     - Verificar injecao de dependencia
     - Usar as rotas de fastAPI para renderizar HTML
+- Instalar loguru
 
 ## Architecture
 # todo desenhar arquitetura

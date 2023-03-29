@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     "home.apps.HomeConfig",
     "department.apps.DepartmentConfig",
     "employee.apps.EmployeeConfig",
+    "rest_framework",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -72,6 +73,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "this_app.wsgi.application"
 
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 5
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases

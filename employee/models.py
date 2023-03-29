@@ -9,12 +9,10 @@ class EmployeeModel(models.Model):
     char's lenght of 200 as standard.
     """
 
-    # Our UUID lib uses 22 chars. We are using 25 to be carefull
-    id = models.CharField(max_length=25, primary_key=True, unique=True)
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     email = models.CharField(max_length=200, unique=True)
     department = models.ForeignKey(DepartmentModel, on_delete=models.CASCADE)
 
     def __str__(self):
-        return "%s %s %s" % (self.id, self.last_name, self.department)
+        return "%s, %s" % (self.last_name, self.department)
