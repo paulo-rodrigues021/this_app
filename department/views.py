@@ -19,7 +19,6 @@ def index(request):
     )
 
 
-# todo deletar essa camada e substituir pela chamada a API
 class DepartmentViewSet(viewsets.ModelViewSet):
 
     queryset = DepartmentModel.objects.all()
@@ -43,7 +42,7 @@ class DepartmentView(APIView):
             return Response(department_serializer.data, status=status.HTTP_201_CREATED)
         return Response(department_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, pk):
-        department = self.get_object(pk)
+    def delete(self, request, name=None):
+        department = DepartmentModel.objects.filter(name=name)
         department.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
