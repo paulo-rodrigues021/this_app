@@ -86,7 +86,6 @@ python manage.py runserver
 Now the application is working in the default port `8000`. You may access it by opening a browser and entering the url `http://127.0.0.1:8000`
 
 ### Creating Admin
-# todo definir como criar um superuser e acessar a parte admin
 
 Create a superuser to serve as an admin:
 ```bash
@@ -115,7 +114,7 @@ Now you have access to the application's `admin` endpoint. You may access it in 
 ## API
 
 ### Installing requests
-###### ref: # todo ref da lib requests do python
+###### ref: https://pypi.org/project/requests/
 
 To use the API make sure the application is running (you may follow the previous steps right above this section). Once you do, one very popular way to use an API in python is by the `requests` lib. Open up a new terminal, initiate a virtualenv and do the following:
 
