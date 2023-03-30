@@ -12,7 +12,7 @@ from .serializers import EmployeeSerializer
 def index(request):
     return render(
         request=request,
-        template_name="employee/index.html"
+        template_name="employee/list_view.html"
     )
 
 

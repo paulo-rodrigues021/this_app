@@ -12,7 +12,7 @@ from .serializers import DepartmentSerializer
 def index(request):
     return render(
         request=request,
-        template_name="department/index.html",
+        template_name="department/list_view.html",
         context={
             "departments": DepartmentModel.objects.all()
         }
