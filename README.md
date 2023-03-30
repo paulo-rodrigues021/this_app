@@ -164,6 +164,7 @@ response.status_code
 
 The example was done using the `department` object, but all CRUD options are available for employee too. You may access both API's documentation in `http://127.0.0.1:8000/api/department/` and `http://127.0.0.1:8000/api/employee/`.
 
+When using the employee API, remember to first create the department register before creating an employee for it. Also, the `department` named field value that will be passed in POST body should refer to the department's id, not its name.
 
 ## Alternatives
 These are a few alternatives for some layers in this project. Ideally I'd write different versions of this app using different tools just for the curiosity matter. I think it is good for at least mention each one.
