@@ -12,7 +12,10 @@ from .serializers import EmployeeSerializer
 def index(request):
     return render(
         request=request,
-        template_name="employee/index.html"
+        template_name="employee/list_view.html",
+        context={
+            "employees": EmployeeModel.objects.all()
+        }
     )
 
 
@@ -39,8 +42,8 @@ class EmployeeView(APIView):
             return Response(employee_serializer.data, status=status.HTTP_201_CREATED)
         return Response(employee_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    def delete(self, request, pk):
-        employee = self.get_object(pk)
+    def delete(self, request, email=None):
+        employee = EmployeeModel.objects.filter(email=email)
         employee.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 

@@ -1,10 +1,10 @@
-<!-- department/templates/department/list_view.html -->
+<!-- employee/templates/employee/list_view.html -->
 
 {% block content %}
-  <h1>Departments List Page</h1>
+  <h1>Employees List Page</h1>
   <button id="showListButton">Show List</button>
   <ul id="list" style="display:none">
-    {% for item in departments %}
+    {% for item in employees %}
       <li>{{ item }}</li>
     {% endfor %}
   </ul>
