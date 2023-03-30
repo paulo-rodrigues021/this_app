@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import viewsets
+from rest_framework import viewsets, serializers
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -32,8 +32,8 @@ class DepartmentView(APIView):
     # permission_classes = [permissions.IsAdminUser]
 
     def get(self, request):
-        department_names = [department.name for department in DepartmentModel.objects.all()]
-        return Response(department_names)
+        departments = DepartmentModel.objects.all().values()
+        return Response(departments)
 
     def post(self, request):
         department_serializer = DepartmentSerializer(data=request.data)

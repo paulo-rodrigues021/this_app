@@ -32,7 +32,7 @@ class EmployeeView(APIView):
     # permission_classes = [permissions.IsAdminUser]
 
     def get(self, request):
-        employees = [employee for employee in EmployeeModel.objects.all()]
+        employees = EmployeeModel.objects.all().values()
         return Response(employees)
 
     def post(self, request):

@@ -9,10 +9,11 @@ class EmployeeModel(models.Model):
     char's lenght of 200 as standard.
     """
 
-    email = models.CharField(primary_key=True, max_length=200, unique=True)
+    id = models.AutoField(primary_key=True)
+    email = models.CharField(max_length=200, unique=True)
     first_name = models.CharField(max_length=200)
     last_name = models.CharField(max_length=200)
     department = models.ForeignKey(DepartmentModel, on_delete=models.CASCADE)
 
     def __str__(self):
-        return "%s, %s" % (self.last_name, self.department)
+        return "%s, %s, %s" % (self.last_name, self.email, self.department)
