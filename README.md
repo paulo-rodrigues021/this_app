@@ -7,6 +7,7 @@
     - Verificar injecao de dependencia
     - Usar as rotas de fastAPI para renderizar HTML
 - Instalar loguru
+- Escrever testes
 
 ## Architecture
 # todo desenhar arquitetura

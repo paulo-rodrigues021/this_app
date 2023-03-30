@@ -1,5 +1,8 @@
-from rest_framework import viewsets
 from django.shortcuts import render
+from rest_framework import viewsets
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from .models import DepartmentModel
 from .serializers import DepartmentSerializer
@@ -16,27 +19,31 @@ def index(request):
     )
 
 
+# todo deletar essa camada e substituir pela chamada a API
 class DepartmentViewSet(viewsets.ModelViewSet):
 
     queryset = DepartmentModel.objects.all()
     serializer_class = DepartmentSerializer
 
-from rest_framework import status
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
 
+class DepartmentView(APIView):
+    ## Auth
+    # from rest_framework import authentication, permissions
+    # authentication_classes = [authentication.TokenAuthentication]
+    # permission_classes = [permissions.IsAdminUser]
 
-@api_view(['GET', 'POST'])
-def department_list(request):
+    def get(self, request):
+        department_names = [department.name for department in DepartmentModel.objects.all()]
+        return Response(department_names)
 
-    if request.method == 'GET':
-        snippets = DepartmentModel.objects.all()
-        serializer = DepartmentSerializer(snippets, many=True)
-        return Response(serializer.data)
+    def post(self, request):
+        department_serializer = DepartmentSerializer(data=request.data)
+        if department_serializer.is_valid():
+            department_serializer.save()
+            return Response(department_serializer.data, status=status.HTTP_201_CREATED)
+        return Response(department_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    elif request.method == 'POST':
-        serializer = DepartmentSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def delete(self, request, pk):
+        department = self.get_object(pk)
+        department.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
